@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Ygames</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'usat/styles.css' %}">
+        
+    </head>
+    <body>
+        <header class="top">
+            <nav>
+                <ul>
+                    <li class="ygame" ><a href="{% url 'usat:home' %}">Ygames</a></li>
+                    <li class="right"><a href="{% url 'usat:log_in' %}">Log in</a></li>
+                    <li class="right"><a href="{% url 'usat:about' %}">About</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class="signup_form">
+            <p class="welcome2">Signup to Ygames</p>
+                <form method="POST" action="">
+                    {% csrf_token %}
+
+                    {{form.username}}
+                    {{form.email}}
+                    {{form.password1}}
+                    {{form.password2}}
+                    <button type="submit">Sign up</button>
+                </form>
+            <p class="p2">have an account? <a href="{% url 'usat:log_in' %}" class="login">Log In!</a></p>
+            {{form.errors}}
+        </div>
+        <script>
+            var ff = document.getElementsByTagName('input')
+            ff[1].placeholder ='Username'
+            ff[2].placeholder ='Email'
+            ff[3].placeholder ='Enter password --minimum 5 charecter--'
+            ff[4].placeholder ='Re-enter the password'
+        </script>
+    </body>
+</html>

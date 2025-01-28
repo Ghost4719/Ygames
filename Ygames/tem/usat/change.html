@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ygames</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'usat/styles.css' %}">
+</head>
+<body>
+    <header class="top">
+        <nav>
+            <ul>
+                <li class="ygame"><a href="{% url 'usat:home' %}">Ygames</a></li>
+                <li class="right"><a href="{% url 'usat:log_out' %}">Log out</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="signup_form">
+        <p class="welcome2">Change your Ygames account</p>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Username field -->
+            <div class="form-field">
+                {{ form.username }}
+            </div>
+
+            <!-- Email field -->
+            <div class="form-field">
+                {{ form.email }}
+            </div>
+
+            <!-- Password fields -->
+            <div class="form-field">
+                {{ form.password1 }}
+            </div>
+            <div class="form-field">
+                {{ form.password2 }}
+            </div>
+            
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <script>
+        var ff = document.getElementsByTagName('input')
+        ff[1].placeholder = 'Username'
+        ff[2].placeholder = 'Email'
+        ff[3].placeholder = 'Enter new password --minimum 5 characters--'
+        ff[4].placeholder = 'Re-enter the password'
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'usat/styles.css' %}">
+    <style>
+        .game-cover {
+            width: 185px;
+            height: 185px;
+            object-fit: cover;
+            border: 2px solid #191B1D;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        a {
+            text-decoration: none;
+            padding: 0;
+            color: #ffffff;
+            font-family: 'Tiny5', Arial, sans-serif;
+            text-align: center;
+        }
+        .game-item {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+        }
+        .username{
+            font-size: 30px;
+            float: right;
+            margin-left: 40px;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+        .usar {
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            min-height: 25px;
+            background-color: #191B1D;
+            border: 1px solid #111214;
+            margin: 10px auto;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 30px;
+            align-items: center;
+            align-items: stretch;
+        }
+        .action, .adventure, .rpg,  .simulation, .stratagy, .sport, .puzzle, .racing, .fighting, .horror, .other  {
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            min-height: 25px;
+            background-color: #191B1D;
+            border: 1px solid #111214;
+            margin: 10px auto;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 30px;
+            align-items: center;
+            align-items: stretch;
+        }
+        .cret {
+            background-color: #191B1D;
+            width: 100%;
+            border-radius: 30px;
+            height: 35px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            display: block;
+            margin: 10px auto;
+        }
+        .big {
+            font-family: 'Tiny5', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 40px;
+        }
+        .usagame{
+            text-align: center;
+            align-items: center;
+            display: block;
+        }
+        .game-list p{
+            font-family: 'Tiny5', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 25px;
+            text-align: center;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header class="top">
+        <nav>
+            <ul>
+                <li class="ygame"><a href="{% url 'usat:home' %}">
+                    Ygames
+                </a></li>
+                <li class="right"><a href="{% url 'usat:log_out' %}">Log out</a></li>
+                <li class="username"><a href="#">{{ request.user }}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="usar">
+        <a href="{% url 'usat:create' %}">
+            <div class="cret">
+                <p class="big">+</p>
+            </div>
+        </a>
+        <center>
+            <div class="usegame">
+                <div class="game-list">
+                    {% for game in user_games %}
+                        <div class="game-item">
+                            <a href="{% url 'usat:edit' game.id %}">
+                                <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                                <h3>{{ game.title }}</h3>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </center>
+    </div>
+
+    <div class="content">
+        <div class="game-list">
+            <!-- Action Genre -->
+            <div class="action">
+                <p>Action</p>
+                {% for game in Action %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Adventure Genre -->
+            <div class="adventure">
+                <p>Adventure</p>
+                {% for game in Adventure %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Role-Playing Genre -->
+            <div class="rpg">
+                <p>Role Play</p>
+                {% for game in Role_Playing %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Simulation Genre -->
+            <div class="simulation">
+                <p>Simulation</p>
+                {% for game in Simulation %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Strategy Genre -->
+            <div class="stratagy">
+                <p>Strategy</p>
+                {% for game in Strategy %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Sports Genre -->
+            <div class="sport">
+                <p>Sports</p>
+                {% for game in Sports %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Puzzle Genre -->
+            <div class="puzzle">
+                <p>Puzzle</p>
+                {% for game in Puzzle %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Racing Genre -->
+            <div class="racing">
+                <p>Racing</p>
+                {% for game in Racing %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Fighting Genre -->
+            <div class="fighting">
+                <p>Fighting</p>
+                {% for game in Fighting %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Horror Genre -->
+            <div class="horror">
+                <p>Horror</p>
+                {% for game in Horror %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Other Genre -->
+            <div class="other">
+                <p>Other</p>
+                {% for game in Other %}
+                    <div class="game-item">
+                        <a href="{% url 'usat:game_detail' game.id %}">
+                            <img src="{{ game.cover_image.url }}" alt="{{ game.title }} Cover" class="game-cover">
+                            <h3>{{ game.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

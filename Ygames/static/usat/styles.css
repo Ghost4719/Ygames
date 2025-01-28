@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+.top {
+    background-color: #191B1D;  
+    height: 80px;
+    position: sticky;
+    border-radius: 1px;
+    border-color: #111214;
+}
+.top nav ul {
+    list-style-type: none;
+    padding: 0;
+    color: #ffffff;
+}
+.top nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    color: #ffffff
+}
+.top nav ul li a {
+    text-decoration: none;
+    color: #ffffff
+}
+* {
+    margin: 0;
+    padding: 0;
+    top: 0%;
+    box-sizing: border-box;
+}
+li{
+    font-family: 'Tiny5', Arial, sans-serif;
+}
+
+.username{
+    font-size: 30px;
+    float: right;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+.right {
+    font-size: 30px;
+    float: right;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+body{
+    background-color: #232527;
+}
+.login{
+    text-decoration: none;
+    color: #E0FFFF;
+}
+.login:hover{
+    text-decoration: underline ;
+}
+.signup{
+    text-decoration: none;
+    color: #E0FFFF;
+}
+.signup:hover{
+    text-decoration: underline ;
+}
+.signup_form {
+    display: flex;
+    flex-direction: column; /* stacks form elements vertically */
+    width: 450px;
+    min-height: 350px;
+    background-color: #393B3D;
+    margin: 100px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+
+.signup_form .error {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.login_form{
+    display: flex;
+    flex-direction: column; /* stacks form elements vertically */
+    width: 450px;
+    min-height: 350px;
+    background-color: #393B3D;
+    margin: 100px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login_form p.welcome1{
+    font-size: 40px;
+    font-family: 'Tiny5', Arial, sans-serif;
+    color: #ffffff;
+    display: block;
+    padding-left: 75px;
+    padding-top: 10px;
+    padding-bottom: none;
+}
+.signup_form p.welcome2{
+    font-size: 40px;
+    font-family: 'Tiny5', Arial, sans-serif;
+    color: #ffffff;
+    display: block;
+    padding-left: 65px;
+    padding-top: 10px;
+    padding-bottom: none;
+}
+input {
+    font-family: 'Tiny5', Arial, sans-serif;
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #404141;
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Press Start 2P', Arial, sans-serif; 
+    background-color: #111112;
+    color: #404141; 
+    text-align: center; 
+    margin: 10px;
+    border-radius: 10px;
+}
+input[type="text"]
+{
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+}
+input[type="email"]
+{
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+}
+input[type="password"]
+{
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+}
+input::placeholder {
+    font-family: 'Tiny5', Arial, sans-serif;
+    text-align: center;
+}
+button{
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #BDBEBE; 
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Press Start 2P', Arial, sans-serif; 
+    background-color: #393B3D; 
+    text-align: center; 
+    margin: 10px;
+    border-radius: 10px; 
+    color: #C1C1BC; 
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.login_form p.p1{
+    margin-left: 100px;
+    margin-right: 1px;
+    color: #E0FFFF;
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 15px;
+}
+.signup_form p.p2{
+    margin-left: 130px;
+    margin-right: 1px;
+    color: #E0FFFF;
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 15px;
+}
+.fill{
+    height: 500px;
+    border-radius: 1px;
+    border-color: #111214;
+    background-color: #191B1D; 
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.p3{
+    margin-left: 120px;
+    margin-right: 120px;
+    color: #E0FFFF;
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 100px;
+}
+h1{
+    font-size: 40px;
+    margin-top: 50px;
+    font-family: 'Tiny5', Arial, sans-serif;
+    color: #ffffff;
+    display: block;
+    padding-left: 230px;
+    padding-top: 10px;
+    padding-bottom: none;
+}
+.input-field {
+    font-family: 'Tiny5', Arial, sans-serif;
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #404141;
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Press Start 2P', Arial, sans-serif; 
+    background-color: #111112;
+    color: #404141; 
+    text-align: center; 
+    margin: 10px;
+    border-radius: 10px;
+}
+.signup_form p label {
+    font-family: 'Tiny5', Arial, sans-serif !important;
+    font-size: 20px !important;
+    color: #ffffff !important;
+}
+
+
+.game-cover {
+    width: 300px;
+    height: 300px;
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 5px;
+}

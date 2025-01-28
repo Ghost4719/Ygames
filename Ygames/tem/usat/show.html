@@ -1,0 +1,480 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ game.title }}</title>
+    <link rel="stylesheet" href="{% static 'usat/styles2.css' %}">
+    <link rel="icon" href="{{ game.cover_image.url }}">
+    <style>
+        body {
+            background-color: {{ game.bg_color }};
+            color: {{ game.text_color }};
+            
+            {% if game.background_image %}
+                background-image: url('{{ game.background_image.url }}');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            {% endif %}
+        }
+
+        /* Apply the dynamic color to the game title */
+        .game-title {
+            font-family: '{{ game.font_family }}', Arial, sans-serif;
+            font-size: 35px;
+            color: {{ game.text_color }}; /* Dynamic color for game title */
+            text-align: center;
+        }
+
+        /* Apply the dynamic color to the "Downloads" and "How to Install" titles */
+        .downloads p, .he2 {
+            color: {{ game.text_color }}; /* Dynamic color */
+            font-size: 30px;
+        }
+
+        /* Content (Description & How to Install) - Override color to black or default */
+        .description-content, .howto {
+            font-family: '{{ game.font_family }}', Arial, sans-serif;
+            font-size: {{ game.font_size }};
+            text-align: center;
+            color: black; /* Override the content text color to black */
+        }
+
+        p {
+            font-family: '{{ game.font_family }}', Arial, sans-serif;
+            font-size: {{ game.font_size }};
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: '{{ game.font_family }}', Arial, sans-serif;
+            color: {{ game.text_color }}; /* Apply dynamic color to headers */
+        }
+
+        .banner {
+            {% if game.banner_image %}
+                background-image: url('{{ game.banner_image.url }}');
+                background-size: cover;
+                background-position: center;
+                height: 300px;
+                width: 100%;
+                margin-bottom: 30px;
+            {% endif %}
+        }
+
+        .game-detail {
+            display: flex;
+            flex-direction: column;
+            width: 1000px;
+            min-height: 350px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 100px auto;
+            padding: 20px;
+            box-sizing: border-box;
+            {% if game.bg_style %}
+                background-image: url('{{ game.bg_style.url }}');
+                background-size: cover;
+                background-position: center;
+            {% endif %}
+        }
+
+        .game-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .game-images img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 900px;
+            height: 900px;
+            object-fit: cover;
+            border: 2px solid #191B1D;
+            border-radius: 5px;
+        }
+
+        .description-content img, .howto img {
+            width: 900px;
+            height: 900px;
+            object-fit: cover;
+        }
+
+        .gallery-container {
+            display: flex;
+            overflow: hidden;
+            max-width: 1560px;
+            height: 400px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .gallery-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-image {
+            min-width: 520px;
+            height: 400px;
+            object-fit: contain;
+            cursor: pointer;
+            margin: 0 1px;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .fixed-size {
+            width: 520px;
+            height: 400px;
+            object-fit: contain;
+        }
+
+        .nav-button {
+            position: absolute;
+            height: 400px;
+            top: 47.5%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+            width: 40px;
+        }
+
+        .prev {
+            left: -9px;
+        }
+
+        .next {
+            right: -10px;
+        }
+
+        iframe {
+            background-color: black;
+            align-self: center;
+        }
+        .game-title{
+            size: 30px;
+        }
+        /* Add this to your existing CSS */
+        .comments-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #111214;
+            border-radius: 8px;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #191B1D;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .reply {
+            margin-top: 10px;
+            margin-left: 20px;
+            padding: 10px;
+            background-color: #000;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .timestamp {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .reply-form {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #232527;
+            border-radius: 8px;
+        }
+
+        .reply-form textarea {
+            width: 98%;
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .reply-form button {
+            padding: 5px 15px;
+            background-color: black
+            color: #232527;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .reply-form button:hover {
+            background-color: #232527;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="top">
+        <nav>
+            <ul>
+                <li class="ygame"><a href="{% url 'usat:home' %}">Ygames</a></li>
+                <li class="right"><a href="{% url 'usat:log_out' %}">Log out</a></li>
+                <li class="username"><a href="#">{{ request.user }}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="game-detail">
+        <div class="banner"></div>
+
+        <h1 class="game-title">{{ game.title }}</h1> <!-- Game title with dynamic text color -->
+
+
+        <div class="game-images">
+            <div class="gallery-container">
+                <button class="nav-button prev" onclick="prevSlide()">&#10094;</button>
+                <div class="gallery-wrapper">
+                    {% for pic in game_pics %}
+                        {% if pic.file.url|slice:"-4:" == ".mp4" or pic.file.url|slice:"-5:" == ".webm" %}
+                            <!-- Display video if file type is video -->
+                            <video class="gallery-image fixed-size" src="{{ pic.file.url }}" alt="{{ game.title }} Video {{ forloop.counter }}" onclick="showMedia('{{ pic.file.url }}', 'video')"></video>
+                        {% else %}
+                            <!-- Display image for other file types -->
+                            <img src="{{ pic.file.url }}" class="gallery-image fixed-size" alt="{{ game.title }} Image {{ forloop.counter }}" onclick="showMedia('{{ pic.file.url }}', 'image')">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="nav-button next" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+                <img id="lightbox-img" class="lightbox-img" src="#" alt="Large Image">
+                <video id="lightbox-video" class="lightbox-video" controls style="display: none;">
+                    <source id="video-source" src="#" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+
+       
+        
+
+
+        <div class="description-content">
+            {{ game.description|safe }}
+        </div>
+
+        <div class="downloads">
+            <p>DOWNLOADS</p> <!-- Downloads title with dynamic text color -->
+            {% for file in game_files %}
+                <a href="{{ file.file.url }}" download>
+                    <button>Download {{ file.file.name|slice:"11:" }}<br>{{ file.file.size|filesizeformat }}</button>
+                </a>
+            {% endfor %}
+        </div>
+        
+        <div class="howto">
+            <p class="he2">HOW TO INSTALL</p> <!-- How to install title with dynamic text color -->
+            {{ game.howto|safe }}
+        </div>
+    </div>
+
+    <!-- Below the game detail section -->
+    <div class="game-detail">
+        <h2>Comments</h2>
+        <div class="comments-section">
+            <!-- Display comments -->
+            {% for comment in comments %}
+                <div class="comment">
+                    <p><strong>{{ comment.user.username }}</strong> says:</p>
+                    <p>{{ comment.content }}</p>
+                    <p class="timestamp">{{ comment.created_at }}</p>
+                    
+                    <!-- Reply form -->
+                    <button onclick="toggleReplyForm({{ comment.id }})">Reply</button>
+                    
+                    <div id="reply-form-{{ comment.id }}" class="reply-form" style="display: none;">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <textarea name="content" required></textarea>
+                            <input type="hidden" name="parent_comment" value="{{ comment.id }}">
+                            <button type="submit">Reply</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Replies -->
+                    {% for reply in comment.comment_set.all %}
+                        <div class="reply">
+                            <p><strong>{{ reply.user.username }}</strong> says:</p>
+                            <p>{{ reply.content }}</p>
+                            <p class="timestamp">{{ reply.created_at }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <p>No comments yet. Be the first to comment!</p>
+            {% endfor %}
+        </div>
+
+        <!-- Comment form for new comments -->
+        <h3>Leave a Comment</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="content" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to toggle the reply form
+        function toggleReplyForm(commentId) {
+            var form = document.getElementById('reply-form-' + commentId);
+            form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+
+
+    <script>
+        // JavaScript for slides and image lightbox
+        var currentSlide = 0;
+        var slides = document.querySelectorAll('.gallery-image');
+
+        function showSlide(index) {
+            slides.forEach(function(slide, i) {
+                slide.style.display = (i >= index && i < index + 2) ? 'block' : 'none';
+            });
+        }
+        function showMedia(url, type) {
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            var lightboxVideo = document.getElementById('lightbox-video');
+            var videoSource = document.getElementById('video-source');
+            
+            // Hide image and show video or vice versa
+            if (type === 'image') {
+                lightboxImg.src = url;
+                lightboxImg.style.display = 'block';
+                lightboxVideo.style.display = 'none'; // Hide video
+            } else if (type === 'video') {
+                videoSource.src = url;
+                lightboxImg.style.display = 'none'; // Hide image
+                lightboxVideo.style.display = 'block'; // Show video
+                lightboxVideo.load(); // Load the video
+            }
+
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            var lightboxVideo = document.getElementById('lightbox-video');
+
+            lightbox.style.display = 'none';
+
+            // Pause video when lightbox is closed
+            if (lightboxVideo.style.display === 'block') {
+                lightboxVideo.pause();
+            }
+        }
+
+
+        function prevSlide() {
+            currentSlide = (currentSlide > 0) ? currentSlide - 2 : slides.length - (slides.length % 2 || 2);
+            showSlide(currentSlide);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide < slides.length - 2) ? currentSlide + 2 : 0;
+            showSlide(currentSlide);
+        }
+
+        function showImage(url) {
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = url;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlide(currentSlide);
+        });
+        let lastScrollTop = 0; // Last scroll position
+        let scrollAmount = 0; // Distance scrolled down
+        const navBar = document.querySelector('.top'); // Select the navigation bar
+        const threshold = 50; // Amount of scroll to trigger the nav bar hide
+
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // If scrolling down
+            if (currentScroll > lastScrollTop) {
+                scrollAmount += currentScroll - lastScrollTop;
+
+                // Hide nav bar only if scrolled past the threshold
+                if (scrollAmount > threshold) {
+                    navBar.classList.add('hidden');
+                }
+            } else {
+                // If scrolling up, reset scrollAmount and show the nav bar slowly
+                if (scrollAmount > threshold) {
+                    navBar.classList.remove('hidden');
+                    scrollAmount = 0; // Reset scroll amount once the nav bar is visible again
+                }
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative values
+        });
+    </script>
+</body>
+</html>

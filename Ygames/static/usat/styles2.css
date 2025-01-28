@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+.top {
+    background-color: #191B1D;  
+    height: 80px;
+    position: sticky;
+    border-radius: 1px;
+    border-color: #111214;
+}
+/* Add this to your styles2.css */
+body {
+    position: relative; /* Ensure all elements are properly stacked */
+    margin-top: 80px; /* Make room for the header if necessary */
+}
+
+.top {
+    position: fixed; /* Fix the navigation bar at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure header is above other content */
+    background-color: #191B1D;
+    height: 80px;
+}
+
+.banner {
+    margin-top: 80px; /* Add margin-top to the banner so it doesn't overlap with the header */
+    /* Ensure banner is placed below the header */
+    /* Other banner styles as you already have */
+}
+
+/* Add to your CSS file */
+.top {
+    transition: transform 0.3s ease-in-out; /* Smooth transition for showing/hiding */
+}
+
+.hidden {
+    transform: translateY(-100%); /* Hides the navigation bar */
+}
+
+.top nav ul {
+    list-style-type: none;
+    padding: 0;
+    color: #ffffff;
+}
+.top nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    color: #ffffff
+}
+.top nav ul li a {
+    text-decoration: none;
+    color: #ffffff
+}
+* {
+    margin: 0;
+    padding: 0;
+    top: 0%;
+    box-sizing: border-box;
+}
+li{
+    font-family: 'Tiny5', Arial, sans-serif;
+}
+.ygame {
+    font-size: 55px;
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #ffffff;
+}
+.username{
+    font-size: 30px;
+    float: right;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+.right {
+    font-size: 30px;
+    float: right;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+body{
+    background-color: #232527;
+}
+
+.crete{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    min-height: 1000px;
+    background-color: #393B3D;
+    margin: 100px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* Restrict image size */
+.image-preview {
+    max-width: 800px;
+    max-height: 800px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    align-self: center;
+  }
+  
+input {
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #404141;
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Press Start 2P', Arial, sans-serif; 
+    background-color: #111112;
+    color: #404141; 
+    text-align: center; 
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Tiny5', Arial, sans-serif;
+    align-items: center;
+}
+Textarea{
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #404141;
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Press Start 2P', Arial, sans-serif; 
+    background-color: #111112;
+    color: #404141; 
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Tiny5', Arial, sans-serif;
+    resize: none;
+}
+input[type="file"]{
+    display: inline-block;
+    padding: 10px 20px; cursor:
+    pointer; color: #333;
+    background-color: #111112;
+    border: 2px solid #404141;
+    border-radius: 5px; box-sizing: border-box; 
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    align-items: center;
+    
+}
+::file-selector-button {
+    display: none;
+  }
+
+button{
+    width: calc(100% - 20px); 
+    padding: 10px; 
+    border: 2px solid #BDBEBE; 
+    border-radius: 5px; box-sizing: border-box; 
+    font-family: 'Tiny5', Arial, sans-serif; 
+    background-color: #393B3D; 
+    text-align: center; 
+    margin: 10px;
+    border-radius: 10px; 
+    color: #C1C1BC; 
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+}
+p{
+    font-family: 'Tiny5', Arial, sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+}

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Game</title>
+    <link rel="stylesheet" href="{% static 'usat/styles2.css' %}">
+    {{ form.media }}
+
+    <!-- Add Google Fonts link to dynamically load the selected fonts -->
+    <link id="google-fonts" rel="stylesheet" type="text/css">
+
+    <style>
+        /* Custom styles for the form */
+        input[type=color] {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        p {
+            font-family: 'Tiny5', Arial, sans-serif;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        select {
+            font-family: 'Tiny5', Arial, sans-serif;
+            width: calc(100% - 20px); 
+            padding: 10px; 
+            border: 2px solid #404141;
+            border-radius: 5px; 
+            box-sizing: border-box; 
+            font-family: 'Press Start 2P', Arial, sans-serif; 
+            background-color: #111112;
+            color: #404141; 
+            text-align: center; 
+            margin: 10px;
+            border-radius: 10px;
+            height: 45px;
+        }
+
+        /* Color section to align inputs horizontally */
+        .color-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .color-section p {
+            display: inline-block;
+            margin: 10px 20px;
+            vertical-align: middle;
+        }
+
+        .color-section input[type="color"] {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="top">
+        <nav>
+            <ul>
+                <li class="ygame"><a href="{% url 'usat:home' %}">Ygames</a></li>
+                <li class="right"><a href="{% url 'usat:log_out' %}">Log out</a></li>
+                <li class="username"><a href="#">{{ request.user }}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="crete">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <p>Name of the game:</p>
+            {{ form.title }}
+            
+            <p>Genre:</p>
+            {{ form.genre }}
+            
+            <p>Game cover pic:</p>
+            {{ form.cover_image }}
+            
+            <p>Description:</p>
+            {{ form.description|safe }}
+            
+            <p>Pictures of the game</p>
+            <input type="file" name="pic" multiple />
+            
+            <p>The game files:</p>
+            <input type="file" name="deta" multiple />
+            
+            <p>Instalation guides:</p>
+            {{ form.howto|safe }}
+            
+            <p>Font</p>
+            <select name="font_family" id="font-select">
+                <option value="Lato">Lato</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Indie Flower">Indie Flower</option>
+                <option value="Pixel">Pixel</option>
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans Serif</option>
+            </select>
+
+            <p>Font Size</p>
+            {{ form.font_size }}
+
+            <!-- Color Section aligned in the same line -->
+            <div class="color-section">
+                <p>Background Color</p>
+                <input type="color" name="bg_color" id="bg-color-picker" value="#eeeeee">
+
+                <p>Text Color</p>
+                <input type="color" name="text_color" id="text-color-picker" value="#222222">
+
+                <p>Link Color</p>
+                <input type="color" name="link_color" id="link-color-picker" value="#fa5c5c">
+            </div>
+
+            <p>Banner Image</p>
+            {{ form.banner_image }}
+            
+            <p>Background Image</p>
+            {{ form.background_image }}
+
+            <p>tinted plane image</p>
+            {{ form.bg_style }}
+            
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+    <script src="{% static 'usat/js/_ckeditor_config.js' %}"></script>
+
+    <script>
+        // Update the font family dynamically based on user selection
+        document.getElementById('font-select').addEventListener('change', function() {
+            var selectedFont = this.value;
+            var googleFontsLink = document.getElementById('google-fonts');
+            googleFontsLink.href = "https://fonts.googleapis.com/css2?family=" + selectedFont.replace(' ', '+') + "&display=swap";
+        });
+
+        // Update color swatches when color picker changes
+        document.getElementById('bg-color-picker').addEventListener('input', function() {
+            document.getElementById('bg-color-swatch').style.backgroundColor = this.value;
+        });
+
+        document.getElementById('text-color-picker').addEventListener('input', function() {
+            document.getElementById('text-color-swatch').style.backgroundColor = this.value;
+        });
+
+        document.getElementById('link-color-picker').addEventListener('input', function() {
+            document.getElementById('link-color-swatch').style.backgroundColor = this.value;
+        });
+    </script>
+</body>
+</html>
