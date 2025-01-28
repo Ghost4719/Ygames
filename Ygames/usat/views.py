@@ -23,7 +23,7 @@ def sign_up(request):
                 return redirect('usat:log_in')
 
         context = {'form': form}
-        return render(request, 'usat/signup.html', context)
+        return render(request, 'usat/index.html', context)
 
 def log_in(request):
     if request.user.is_authenticated:
